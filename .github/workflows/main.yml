@@ -1,0 +1,29 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    # fazer o checkout do código do repositório
+    steps:
+    - uses: actions/checkout@v3
+
+    #Congurar o Node.js
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '18.x'
+
+    #instala as dependências do projeto
+    - name: Install Dependencies
+      run: npm install
+      
+    # Executa os testes do projeto
+    - name: Run Tests
+      run: npm test
+
+    #Constrói o projeto
+    - name: Build
+      run: npm run build
